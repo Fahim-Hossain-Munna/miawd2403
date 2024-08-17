@@ -307,7 +307,7 @@ $services = mysqli_query($db,$service_query);
                     <div class="row justify-content-center">
                         <div class="col-xl-6 col-lg-8">
                             <div class="section-title text-center mb-70">
-                                <span>Portfolio Showcase</span>
+                                <span>Portfolios</span>
                                 <h2>My Recent Best Works</h2>
                             </div>
                         </div>
