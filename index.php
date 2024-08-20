@@ -19,7 +19,7 @@ if(isset($_SESSION['auth_id'])){
 
 }
 
-$service_query = "SELECT * FROM services";
+$service_query = "SELECT * FROM services WHERE status='active'";
 $services = mysqli_query($db,$service_query);
 
 
@@ -174,7 +174,8 @@ $services = mysqli_query($db,$service_query);
                         </div>
                         <div class="col-xl-5 col-lg-6 d-none d-lg-block">
                             <div class="banner-img text-right">
-                                <?php if($user['image'] == 'deafult.jpg' ):  ?>
+                                <?php 
+                                if($user['image'] == 'deafult.jpg'):  ?>
                                     <img src="./public/deafult/<?= $user['image'] ?>" alt="" style="width: 650px; height:800px;">
                                     <?php else:  ?>
                                         <img src="./public/profile/<?= $user['image'] ?>" alt="" style="width: 650px; height:800px;">

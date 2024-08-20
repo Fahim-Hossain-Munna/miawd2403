@@ -105,6 +105,9 @@ $user = mysqli_fetch_assoc($user_connect);
                     <li class="<?= ($link == 'index.php') ? 'active-page' : '' ?> ">
                         <a href="../services/index.php"><i class="material-icons-two-tone">medical_services</i>Services</a>
                     </li>
+                    <li class="<?= ($link == 'portfolio.php') ? 'active-page' : '' ?> ">
+                        <a href="../portfolio/portfolio.php"><i class="material-icons-two-tone">design_services</i>Portfolios</a>
+                    </li>
                     <!-- <li>
                         <a href="calendar.html"><i class="material-icons-two-tone">calendar_today</i>Calendar<span class="badge rounded-pill badge-success float-end">14</span></a>
                     </li>

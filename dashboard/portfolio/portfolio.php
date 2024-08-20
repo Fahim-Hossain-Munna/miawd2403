@@ -3,8 +3,8 @@
 include "../master/header.php";
 include "../../config/database.php";
 
-$service_read = "SELECT * FROM services";
-$services = mysqli_query($db,$service_read);
+$service_read = "SELECT * FROM portfolios";
+$portfolios = mysqli_query($db,$service_read);
 
 
 ?>
@@ -12,45 +12,22 @@ $services = mysqli_query($db,$service_read);
 <div class="row">
     <div class="col">
         <div class="page-description">
-            <h1>Services Page</h1>
+            <h1>Portfolio Page</h1>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-12">
-    <?php if(isset($_SESSION['service_created'])) :  ?>
-    <div class="alert alert-custom" role="alert">
-        <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
-        <div class="alert-content">
-            <span class="alert-title"><?= $_SESSION['service_created'] ?></span>
-            <!-- <span class="alert-text">Email is <?= $_SESSION['auth_email'] ?></span> -->
-        </div>
-    </div>
-    <?php endif; unset($_SESSION['service_created']); ?>
-    </div>
-</div>
 
 <div class="row">
     <div class="col-12">
-    <?php if(isset($_SESSION['service_delete'])) :  ?>
+    <?php if(isset($_SESSION['port_created'])) :  ?>
     <div class="alert alert-custom" role="alert">
         <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
         <div class="alert-content">
-            <span class="alert-title"><?= $_SESSION['service_delete'] ?></span>
+            <span class="alert-title"><?= $_SESSION['port_created'] ?></span>
         </div>
     </div>
-    <?php endif; unset($_SESSION['service_delete']); ?>
-
-
-    <?php if(isset($_SESSION['service_status'])) :  ?>
-    <div class="alert alert-custom" role="alert">
-        <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
-        <div class="alert-content">
-            <span class="alert-title"><?= $_SESSION['service_status'] ?></span>
-        </div>
-    </div>
-    <?php endif; unset($_SESSION['service_status']); ?>
+    <?php endif; unset($_SESSION['port_created']); ?>
     </div>
 </div>
 
@@ -58,7 +35,7 @@ $services = mysqli_query($db,$service_read);
     <div class="col-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-            <h4>Services</h4>
+            <h4>Portfolio</h4>
             <a href="./create.php" name="image_ubtn" class="btn btn-primary my-2"><i class="material-icons">add</i>Create</a> 
             </div>
             <div class="card-body">
@@ -68,37 +45,38 @@ $services = mysqli_query($db,$service_read);
                         <thead class="table-dark">
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Icon</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Title</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
-                            $serial = 1;
-                            foreach($services as $service) : ?>
+                        <?php
+                            $num = 1;
+                            foreach($portfolios as $portfolio):
+                        ?>
                             <tr>
                                 <th scope="row">
-                                    <?= $serial++ ?>
+                                    <?= $num++ ?>
                                 </th>
                                 <td>
-                                    <i class="fa-3x <?= $service['icon'] ?>"></i>
+                                    <img src="../../public/portfolio/<?= $portfolio['image'] ?>" style="width:80px; height:80px;" alt="">
                                 </td>
                                 <td>
-                                <?= $service['title'] ?>
+                                <?= $portfolio['title'] ?>
                                 </td>
                                 <td>
-                                <a href="store.php?fahim=<?=$service['id']?>" class="<?= ($service['status'] == 'deactive') ? 'badge bg-danger text-white' : 'badge bg-success text-white'?>">
-                                <?= $service['status'] ?>
+                                <a href="">
+                                    <?= $portfolio['status'] ?>
                                 </a>
                                 </td>
                                 <td class="">
                                     <div class="d-flex justify-content-around">
-                                        <a href="edit.php?edit=<?= $service['id'] ?>">
+                                        <a href="">
                                             <i class="fa fa-chain text-info fa-2x"></i>
                                         </a>
-                                        <a href="store.php?id=<?= $service['id'] ?>">
+                                        <a href="">
                                             <i class="fa fa-trash-o text-danger fa-2x"></i>
                                         </a>
                                     </div>
