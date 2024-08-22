@@ -59,9 +59,9 @@ $users = mysqli_query($db,$user_query);
                                 continue;
                             }
                             ?>
-                            <tr>
-                                <th scope="row"><?= $serial++ ?></th>
-                                <td><?= $user['name']  ?></td>
+                            <tr >
+                               <th scope="row"><?= $serial++ ?></th>
+                                <td><?= $user['name']  ?> d</td>
                                 <td><?= $user['email']  ?></td>
                                 <td>@mdo</td>
                             </tr>
