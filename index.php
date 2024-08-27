@@ -27,6 +27,8 @@ $services = mysqli_query($db, $service_query);
 $port_query = "SELECT * FROM portfolios WHERE status='active'";
 $portfolios = mysqli_query($db, $port_query);
 
+$education_read = "SELECT * FROM educations";
+$educations = mysqli_query($db,$education_read);
 
 
 ?>
@@ -215,62 +217,22 @@ $portfolios = mysqli_query($db, $port_query);
                             <h3>Education:</h3>
                         </div>
                         <!-- Education Item -->
+                         <?php foreach($educations as $education): ?>
                         <div class="education">
-                            <div class="year">2020</div>
+                            <div class="year">
+                                <?= $education['year']  ?>
+                            </div>
                             <div class="line"></div>
                             <div class="location">
-                                <span>PHD of Interaction Design &amp; Animation</span>
+                                <span><?= $education['title']  ?> &amp; Animation</span>
                                 <div class="progressWrapper">
                                     <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: <?= $education['ratio'] ?>%;" aria-valuenow="<?= $education['ratio'] ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- End Education Item -->
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2016</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>Master of Database Administration</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Education Item -->
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2010</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>Bachelor of Computer Engineering</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Education Item -->
-                        <!-- Education Item -->
-                        <div class="education">
-                            <div class="year">2005</div>
-                            <div class="line"></div>
-                            <div class="location">
-                                <span>Diploma of Computer</span>
-                                <div class="progressWrapper">
-                                    <div class="progress">
-                                        <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                         <!-- End Education Item -->
                     </div>
                 </div>
@@ -504,11 +466,11 @@ $portfolios = mysqli_query($db, $port_query);
                     </div>
                     <div class="col-lg-6">
                         <div class="contact-form">
-                            <form action="#">
-                                <input type="text" placeholder="your name *">
-                                <input type="email" placeholder="your email *">
-                                <textarea name="message" id="message" placeholder="your message *"></textarea>
-                                <button class="btn">SEND</button>
+                            <form action="./dashboard/email/action.php" method="post">
+                                <input type="text" placeholder="your name *" name="name">
+                                <input name="email" type="email" placeholder="your email *" style="text-transform: lowercase !important;">
+                                <textarea name="body" id="message" placeholder="your message *"></textarea>
+                                <button type="submit" class="btn" name="email_sender">SEND</button>
                             </form>
                         </div>
                     </div>
